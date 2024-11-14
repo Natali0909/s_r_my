@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Репетитор з математики - Наталя Федун</title>
+    <link rel="icon" href="images/logo.png" type="image/jpeg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <style>
+   
+
+        /* Стилі для кнопки "Повернутися наверх" */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            display: none;
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Стилі для зірочок у відгуках */
+        .star-rating .fa-star, .star-rating .fa-star-half-alt {
+            color: gold;
+        }
+
+        /* Ефект підсвічування блоків при наведенні */
+        .card, .accordion-item, .carousel-item {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover, .accordion-item:hover, .carousel-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Стилі для меню */
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+		        <!-- Карусель з фото -->
+        <div id="carouselExampleInterval" class="carousel slide my-4" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="5000">
+                    <img src="images/1.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="images/2.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="images/3.jpg" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Попередній</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Наступний</span>
+            </button>
+        </div>
+
+    <!-- Меню з логотипом -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	
+        <a class="navbar-brand" href="index.html">
+            <img src="images/logo.png" alt="Логотип"> Репетитор з математики
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Послуги
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="servicesDropdown">
+                        <li><a class="dropdown-item" href="calculator.html">Калькулятор проведення занять</a></li>
+                        <li><a class="dropdown-item" href="conversion.html">Перевір свої знання</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="index.html">Головна</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Основний контент -->
+    <div class="container my-5">
+        <div class="row">
+            <!-- Основний калькулятор -->
+            <div class="col-md-8">
+                <h2>Розрахунок вартості занять</h2>
+                <div class="form-group">
+                    <label for="num-months">Кількість місяців:</label>
+                    <input type="number" id="num-months" class="form-control" placeholder="Введіть кількість місяців">
+                </div>
+                <p>Ціна за одне заняття: <strong>150 грн</strong></p>
+
+                <div class="form-check">
+                    <input type="checkbox" id="friend-checkbox" class="form-check-input">
+                    <label class="form-check-label" for="friend-checkbox">З запрошенням товариша (5% знижка)</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="military-checkbox" class="form-check-input">
+                    <label class="form-check-label" for="military-checkbox">Працює в ЗСУ (10% знижка)</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="privilege-checkbox" class="form-check-input">
+                    <label class="form-check-label" for="privilege-checkbox">Пільговик (15% знижка)</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="pair-checkbox" class="form-check-input">
+                    <label class="form-check-label" for="pair-checkbox">Хочу на парне заняття (7% знижка)</label>
+                </div>
+
+                <button onclick="calculateCost()" class="btn btn-secondary">Розрахувати вартість</button>
+                <p id="calc-result" class="mt-3"></p>
+                <p id="timer-message" class="mt-3" style="font-size: 1.2em;"></p>
+            </div>
+
+            <!-- Інформаційний блок з правого боку -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Інформація про знижки</h5>
+                        <p class="card-text">
+                            <strong>З запрошенням товариша:</strong> Ви отримаєте 5% знижки, якщо приведете друга, який також бажає навчатися.<br><br>
+                            <strong>Працює в ЗСУ:</strong> Нашим захисникам пропонуємо 10% знижки на всі заняття.<br><br>
+                            <strong>Пільговик:</strong> Якщо ви маєте пільги, отримайте знижку 15%.<br><br>
+                            <strong>Парне заняття:</strong> Якщо ви обираєте навчання у групі, знижка складе 7%.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+		        <div class="text-center mt-5">
+            <a href="index.html" class="btn btn-secondary">Повернутись на головну сторінку</a>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p>Контакти: Наталя Федун | Телефон: +380971237890</p>
+        <p>
+            <a href="https://www.instagram.com/natalii_fd/" class="text-white mx-2">
+                <i class="fab fa-instagram"></i> Instagram
+            </a> |
+            <a href="https://www.facebook.com/search/top/?q=%D0%9D%D0%B0%D1%82%D0%B0%D0%BB%D1%96%D1%8F%20%D0%A4%D0%B5%D0%B4%D1%83%D0%BD" class="text-white mx-2">
+                <i class="fab fa-facebook"></i> Facebook
+            </a>
+        </p>
+    </footer>
+
+    <script>
+        function calculateCost() {
+            const numMonths = parseInt(document.getElementById("num-months").value);
+            const pricePerSession = 150;
+            const sessionsPerMonth = 4;
+            let totalSessions = numMonths * sessionsPerMonth;
+            let totalCost = totalSessions * pricePerSession;
+
+            // Застосування знижок
+            if (document.getElementById("friend-checkbox").checked) totalCost *= 0.95; // 5% знижка
+            if (document.getElementById("military-checkbox").checked) totalCost *= 0.90; // 10% знижка
+            if (document.getElementById("privilege-checkbox").checked) totalCost *= 0.85; // 15% знижка
+            if (document.getElementById("pair-checkbox").checked) totalCost *= 0.93; // 7% знижка
+
+            document.getElementById("calc-result").innerHTML = `Загальна вартість: ${totalCost.toFixed(2)} грн на ${totalSessions} занять.`;
+
+            // Таймер до закінчення навчання
+            const endDate = new Date();
+            endDate.setDate(endDate.getDate() + (numMonths * 30)); // Розрахунок кінцевої дати
+            startEndTimer(endDate);
+        }
+
+        // Функція для запуску таймера до закінчення навчання
+        function startEndTimer(endDate) {
+            setInterval(() => {
+                const now = new Date().getTime();
+                const distance = endDate - now;
+
+                if (distance < 0) {
+                    document.getElementById("timer-message").innerHTML = "Ваше навчання завершено.";
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("timer-message").innerHTML = `До закінчення вашого навчання залишилось: ${days}д ${hours}г ${minutes}хв ${seconds}с`;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
